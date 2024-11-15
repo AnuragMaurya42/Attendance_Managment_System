@@ -1,34 +1,37 @@
-const moment = require("moment");
+const mongoose = require("mongoose");
 
-module.exports = (sequelize, DataTypes) => {
-  const Attendance = sequelize.define("Attendance", {
-    roll: {
-      type: DataTypes.STRING,
-      allowNull: false,
+const attendanceSchema = new mongoose.Schema({
+  roll: {
+    type: String,
+    required: true,
+  },
+  course: {
+    type: String,
+    required: true,
+  },
+  year: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Date,
+    required: true,
+    get: (date) => {
+      return date ? new Date(date).toISOString().split('T')[0] : date;
     },
-    course: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    year: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    date: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-      get: function () {
-        return moment.utc(this.getDataValue("date")).format("YYYY-MM-DD");
-      },
-    },
-    status: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  });
-  return Attendance;
-};
+  },
+  status: {
+    type: String,
+    required: true,
+  },
+}, {
+  toJSON: { getters: true }, // Enable getters for JSON responses
+  toObject: { getters: true }, // Enable getters for object responses
+});
+
+// Create and export the Attendance model
+module.exports = mongoose.model("Attendance", attendanceSchema);

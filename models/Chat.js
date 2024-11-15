@@ -1,21 +1,22 @@
-module.exports = (sequelize, DataTypes) => {
-  const Chat = sequelize.define("Chat", {
-    from: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    course: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    year: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    msg: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  });
-  return Chat;
-};
+const mongoose = require('mongoose');
+
+const chatSchema = new mongoose.Schema({
+  from: {
+    type: String,
+    required: true,
+  },
+  course: {
+    type: String,
+    required: true,
+  },
+  year: {
+    type: String,
+    required: true,
+  },
+  msg: {
+    type: String,
+    required: true,
+  },
+});
+
+module.exports = mongoose.model('Chat', chatSchema);

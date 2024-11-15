@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const db = require("../models");
 const { check, validationResult } = require("express-validator");
 const keys = {
   secretOrKey: "secret",
@@ -12,6 +11,7 @@ const Student = require("../models/Student");
 const auth = require("../middleware/auth");
 const Course = require("../models/Course");
 const Attendance = require("../models/Attendance");
+const Chat = require("../models/Chat");
 
 // @route    POST api/student/register
 // @desc     Register a student
@@ -39,7 +39,6 @@ router.post(
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log(errors);
       return res.status(400).json({
         errors: errors.array(),
       });
@@ -47,10 +46,8 @@ router.post(
 
     //check if email already exists. if it does, do not register
     try {
-      let student = await db.Student.findOne({
-        where: {
-          email: req.body.email,
-        },
+      let student = await Student.findOne({
+        email: req.body.email,
       });
 
       if (student) {
@@ -63,7 +60,7 @@ router.post(
         bcrypt.hash(password, salt, (err, hash) => {
           if (err) throw err;
 
-          db.Student.create({
+          Student.create({
             email: email,
             password: hash,
             name: name,
@@ -96,7 +93,7 @@ router.post(
             })
             .catch((err) => {
               console.log(err.message);
-              res.status(500).send("Status Error");
+              res.status(500).send("Server Error");
             });
         });
       });
@@ -125,8 +122,8 @@ router.post(
     const { email, password } = req.body;
 
     try {
-      let student = await db.Student.findOne({
-        where: { email: email },
+      let student = await Student.findOne({
+        email: email,
       });
 
       if (!student) {
@@ -175,8 +172,8 @@ router.post(
 // @access  Private
 router.get("/current", auth, async (req, res) => {
   try {
-    const profile = await db.Student.findOne({
-      where: { email: req.user.email },
+    const profile = await Student.findOne({
+      email: req.user.email,
     });
 
     if (!profile) {
@@ -194,25 +191,22 @@ router.get("/current", auth, async (req, res) => {
 // @desc    Get courses of that batch
 // @access  Private
 router.get("/courses", auth, async (req, res) => {
-  console.log(req.user);
   try {
-    const profile = await db.Student.findOne({
-      where: { email: req.user.email },
+    const profile = await Student.findOne({
+      email: req.user.email,
     });
 
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
     }
 
-    db.Course.findAll({
-      where: {
-        year: profile.year,
-        dept: profile.dept,
-      },
+    Course.find({
+      year: profile.year,
+      dept: profile.dept,
     })
       .then((courses) => res.json(courses))
       .catch((err) =>
-        res.status(404).json({ nopostfound: "No post found with that ID" })
+        res.status(404).json({ nopostfound: "No courses found" })
       );
   } catch (error) {
     console.log(error.message);
@@ -225,23 +219,21 @@ router.get("/courses", auth, async (req, res) => {
 // @access  Private
 router.get("/courses/:course", auth, async (req, res) => {
   try {
-    const profile = await db.Student.findOne({
-      where: { email: req.user.email },
+    const profile = await Student.findOne({
+      email: req.user.email,
     });
 
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
     }
 
-    db.Course.findAll({
-      where: {
-        year: profile.year,
-        course: req.params.course,
-      },
+    Course.find({
+      year: profile.year,
+      course: req.params.course,
     })
       .then((courses) => res.json(courses))
       .catch((err) =>
-        res.status(404).json({ nopostfound: "No post found with that ID" })
+        res.status(404).json({ nopostfound: "No courses found" })
       );
   } catch (error) {
     console.log(error.message);
@@ -254,20 +246,18 @@ router.get("/courses/:course", auth, async (req, res) => {
 // @access  Private
 router.get("/attendance/:course", auth, async (req, res) => {
   try {
-    const profile = await db.Student.findOne({
-      where: { email: req.user.email },
+    const profile = await Student.findOne({
+      email: req.user.email,
     });
 
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
     }
 
-    db.Attendance.findAll({
-      where: {
-        roll: profile.roll,
-        year: profile.year,
-        course: req.params.course,
-      },
+    Attendance.find({
+      roll: profile.roll,
+      year: profile.year,
+      course: req.params.course,
     })
       .then((records) => {
         res.json(records);
@@ -284,19 +274,17 @@ router.get("/attendance/:course", auth, async (req, res) => {
 // @access  Private
 router.get("/attendance", auth, async (req, res) => {
   try {
-    const profile = await db.Student.findOne({
-      where: { email: req.user.email },
+    const profile = await Student.findOne({
+      email: req.user.email,
     });
 
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
     }
 
-    db.Attendance.findAll({
-      where: {
-        roll: profile.roll,
-        year: profile.year,
-      },
+    Attendance.find({
+      roll: profile.roll,
+      year: profile.year,
     })
       .then((records) => {
         let total = records.length;
@@ -322,18 +310,18 @@ router.get("/attendance", auth, async (req, res) => {
 // @access  Private
 router.get("/percent/:course", auth, async (req, res) => {
   try {
-    const profile = await db.Student.findOne({ email: req.user.email });
+    const profile = await Student.findOne({
+      email: req.user.email,
+    });
 
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
     }
 
-    db.Attendance.findAll({
-      where: {
-        roll: profile.roll,
-        year: profile.year,
-        course: req.params.course,
-      },
+    Attendance.find({
+      roll: profile.roll,
+      year: profile.year,
+      course: req.params.course,
     })
       .then((records) => {
         let total = records.length;
@@ -358,11 +346,9 @@ router.get("/percent/:course", auth, async (req, res) => {
 // @desc    Get chat
 // @access  Public
 router.get("/chat/:course/:year", (req, res) => {
-  db.Chat.findAll({
-    where: {
-      course: req.params.course,
-      year: req.params.year,
-    },
+  Chat.find({
+    course: req.params.course,
+    year: req.params.year,
   })
     .then((comments) => res.json(comments))
     .catch((err) =>
@@ -376,7 +362,7 @@ router.get("/chat/:course/:year", (req, res) => {
 // @desc    Post comment
 // @access  Private
 router.post("/chat/:course/:year", auth, (req, res) => {
-  db.Chat.create({
+  Chat.create({
     from: req.user.name,
     course: req.params.course,
     year: req.params.year,
