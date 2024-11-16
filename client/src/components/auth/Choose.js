@@ -8,7 +8,7 @@ const Choose = () => {
   // Define the button style for Android devices
   const androidButtonStyle = {
     width: "80%", // Make the button width responsive
-    height: "100px", // Height for the button
+    height: "75px", // Height for the button
     borderRadius: "12px", // Softer corners
     display: "flex",
     justifyContent: "center",
@@ -19,7 +19,7 @@ const Choose = () => {
     backdropFilter: "blur(10px)", // Glassmorphism effect
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
     color: "#fafafa", // White text color for contrast
-    fontSize: "34px",
+    fontSize: "28px",
     fontWeight: "bold",
   };
 
