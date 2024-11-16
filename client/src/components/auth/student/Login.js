@@ -27,6 +27,7 @@ const StudentLogin = ({
   let signUpButton = document.getElementById("signUp");
   let signInButton = document.getElementById("signIn");
   let container = document.getElementById("container");
+  const [loginTag, setLoginTag] = useState(true);
 
   useEffect(() => {
     signUpButton = document.getElementById("signUp");
@@ -65,7 +66,8 @@ const StudentLogin = ({
         <b>Student Login</b>
       </h1>
 
-      <div className="container" id="container" style={{ height: "580px" }}>
+      <div className="container" id="container" >
+        { loginTag===false ? 
         <div className="form-container sign-up-container">
           <form action="#" onSubmit={(e) => register(e)}>
             <h1>Create Account</h1>
@@ -119,7 +121,15 @@ const StudentLogin = ({
             />
             <button type="submit">Sign Up</button>
           </form>
+          <button
+            onClick={() => toggleForm('signIn')}
+            className="newButton"
+            id="signIn"
+          >
+            Already have an account!
+          </button>
         </div>
+        :
         <div className="form-container sign-in-container">
           <form action="#" onSubmit={(e) => login(e)}>
             <h1>Sign in</h1>
@@ -141,7 +151,13 @@ const StudentLogin = ({
             />
             <button>Sign In</button>
           </form>
+          <button onClick={() => toggleForm('signUp')}
+            className="newButton"
+            id="signUp"   >
+            Don't have an account?
+          </button>
         </div>
+}
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
@@ -163,6 +179,18 @@ const StudentLogin = ({
       </div>
     </div>
   );
+
+    // JavaScript for toggling forms
+    function toggleForm(targetForm) {
+      const container = document.getElementById("container");
+      if (targetForm === "signUp") {
+        container.classList.add("right-panel-active");
+        setLoginTag(false);
+      } else {
+        container.classList.remove("right-panel-active");
+        setLoginTag(true);
+      }
+    }
 };
 
 StudentLogin.propTypes = {
