@@ -12,6 +12,10 @@ export const Landing = () => {
       {isDesktop && (
         <div data-spy="scroll" data-target="#navbarResponsive">
           <div id="home">
+
+
+
+
             <nav className="navbar navbar-expand-md navbar-dark bg-transparent fixed-top">
               <Link className="navbar-brand" to="/">
                 <img src={logo} alt="logo" style={{ color: "white" }} />
@@ -45,6 +49,10 @@ export const Landing = () => {
               </div>
 
             </nav>
+
+
+
+
 
             <div className="landing">
               <div className="home-wrap">
@@ -146,56 +154,81 @@ export const Landing = () => {
           }}
         >
           <div id="home" style={{ width: "100%", textAlign: "center" }}>
-            <nav className="navbar2 navbar-expand-md navbar-dark fixed-top">
-              <button
-                className="navbar-toggler"
-                type="button"
-                style={{
-                  borderColor: "#f0f0f0",       // Custom border color for the button
-                  position: "absolute",
-                  backgroundColor: "#099e2a",         // Position it absolutely relative to the navbar
-                  left: "10px",                 // Place the button 10px from the left edge of the screen
-                  top: "15px",                  // Adjust the top to align the button vertically with the navbar
-                  zIndex: 1050,                 // Ensure the button is above other elements
-                }}
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarResponsive"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="#fafafa"
-                  className="bi bi-list"
-                  viewBox="0 0 16 16"
-                  style={{ cursor: "pointer" }}
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
-                  />
-                </svg>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarResponsive">
-                <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <a className="nav-link" href="#home">
-                      Home
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#features">
-                      Features
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#contact">
-                      Contact
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
+
+
+
+
+
+
+
+
+
+
+  <nav className="navbar navbar-expand-md navbar-dark fixed-top" style={{ left: '0' }}>
+      <button
+        className="navbar-toggler"
+        type="button"
+        style={{
+          borderColor: "#f0f0f0", // Custom border color for the button
+          backgroundColor: "#099e2a", // Background color of the button
+          position: "absolute", // Positioning the button absolutely within the navbar
+          left: "0px", // 10px from the left edge
+          top: "0px",
+          height:"50px",
+           // Adjust top for vertical alignment
+          zIndex: 1050, // Ensuring the button stays above other elements
+        }}
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarResponsive"
+        aria-controls="navbarResponsive"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          fill="#fafafa"
+          
+          className="bi bi-list"
+          viewBox="0 0 16 16"
+          style={{ cursor: "pointer",
+            marginLeft:"-310px",
+           }}
+        >
+          <path
+            fillRule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+          />
+        </svg>
+      </button>
+
+      <div className="collapse navbar-collapse" id="navbarResponsive">
+        <ul className="navbar-nav" style={
+          {
+            marginTop:"59px",
+          }
+        }>
+          <li className="nav-item">
+            <a className="nav-link" href="#home">
+              Home
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#features">
+              Features
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#contact">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
 
 
             {/* Centered image */}
