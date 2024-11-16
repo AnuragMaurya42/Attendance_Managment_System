@@ -106,25 +106,29 @@ export const Landing = () => {
           </div>
 
           <div id="contact" className="offset">
-            <footer>
-              <div className="row justify-content-center">
-                <div className="col-md-5 text-center">
-                  <img src={footer_logo} alt="logo" /> <br />
-                  <br />
-                  <strong>Contact info</strong>
-                  <br />
-                  <p>
-                    Airport Rd, PDPM IIITDM Jabalpur Campus, Khamaria, Jabalpur, Madhya Pradesh 482005.
-                    <br />
-                    <i className="fas fa-phone"></i> +91-761-2632273 |{" "}
-                    <i className="fas fa-print"></i> +91-761-2632524.
-                    <br />
-                    <i className="fas fa-envelope"></i> not available
-                  </p>
-                </div>
-              </div>
-            </footer>
-          </div>
+  <footer style={{ backgroundColor: "rgb(189 203 238)", padding: "20px" }}>
+    <div className="row justify-content-center">
+      <div className="col-md-5 text-center">
+        <img src={footer_logo} alt="logo" style={{ marginBottom: "20px" }} /> <br />
+        <strong style={{ fontSize: "24px", color: "black" }}>Contact info</strong>
+        <br />
+        <p>
+     <b>   NIT Entrance Rd, Hazratbal, Srinagar, Jammu and Kashmir (State) 190006, India</b>
+          <br />
+          <i className="fas fa-phone"></i> 0194-242-2032 |{" "}
+          <i className="fas fa-print"></i> 91-194-2420475
+          <br />
+          <i className="fas fa-envelope"></i> info@nitsri.ac.in
+        </p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+
+
+
+
         </div>
       )}
       {isAndroid && (
@@ -217,8 +221,9 @@ export const Landing = () => {
                   lineHeight: "1.8",       // Adjust this value to control the spacing between lines
                 }}
               >
-              <strong> Welcome to NIT Srinagar's <br />
-              App-Based Attendance Management System</strong>
+                <b>
+                Welcome to NIT Srinagar's <br />
+                App-Based Attendance Management System</b>
               </p>
 
               <Link
