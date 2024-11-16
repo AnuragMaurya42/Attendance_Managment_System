@@ -1,0 +1,43 @@
+
+@media (min-width:500px) {
+  
+.card{
+  
+  background-color: #7dada6;
+  max-height: max-content;
+}
+
+.subHeading{
+  padding-left: 20px;
+  padding-top: 30px;
+  text-transform: capitalize;
+}
+
+}
+
+
+/* Mobile-Screen */
+
+@media (max-width:500px) {
+  
+.main-cards{
+  margin-right: 40px;
+}
+
+.card{
+  
+  background-color: #7dada6;
+  max-height: max-content;
+}
+
+.subHeading{
+  padding-top: initial;
+  text-transform: capitalize;
+}
+
+.footer
+{
+  display: none;
+}
+
+}

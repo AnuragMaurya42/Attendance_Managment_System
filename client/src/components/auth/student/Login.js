@@ -77,7 +77,7 @@ const StudentLogin = ({
               value={name}
               name="name"
               onChange={(e) => onChange(e)}
-              autoComplete="off"
+              autoComplete="on"
             />
             <input
               type="email"
@@ -85,7 +85,7 @@ const StudentLogin = ({
               value={email}
               name="email"
               onChange={(e) => onChange(e)}
-              autoComplete="off"
+              autoComplete="on"
             />
             <input
               type="text"
@@ -93,7 +93,7 @@ const StudentLogin = ({
               value={roll}
               name="roll"
               onChange={(e) => onChange(e)}
-              autoComplete="off"
+              autoComplete="on"
             />
             <input
               type="password"
@@ -109,7 +109,7 @@ const StudentLogin = ({
               value={dept}
               name="dept"
               onChange={(e) => onChange(e)}
-              autoComplete="off"
+              autoComplete="on"
             />
             <input
               type="text"
@@ -117,7 +117,7 @@ const StudentLogin = ({
               value={year}
               name="year"
               onChange={(e) => onChange(e)}
-              autoComplete="off"
+              autoComplete="on"
             />
             <button type="submit">Sign Up</button>
           </form>
@@ -139,7 +139,7 @@ const StudentLogin = ({
               value={email}
               name="email"
               onChange={(e) => onChange(e)}
-              autoComplete="off"
+              autoComplete="on"
             />
             <input
               type="password"

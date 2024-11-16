@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Table from "./Table";
 import Sidebar from "./Sidebar";
+import "./attendence.css"
 
 const StudentAttendance = ({
   getCourses,
@@ -52,11 +53,11 @@ const StudentAttendance = ({
       <Sidebar user={user} />
       <main className="main">
         <div>
-          <h1 style={{ paddingLeft: "20px", paddingTop: "30px" }}>
+          <h1 className="subHeading">
             {match.params.course}{" "}
           </h1>
           <div className="main-cards">
-            <div className="card" style={{ color: "white" }}>
+            <div className="card" >
               <h2 style={{ color: "black" }}>Average Attendance Record</h2>
 
               <div className={`c100 p${percent} big`}>
@@ -98,8 +99,8 @@ const StudentAttendance = ({
             <thead className="thead-dark heading">
               <tr>
                 <th className="student-table-header">S.No</th>
-                <th className="student-table-header">Student Roll</th>
-                <th className="student-table-header">Student Name</th>
+                {/* <th className="student-table-header">Student Roll</th>
+                <th className="student-table-header">Student Name</th> */}
                 <th className="student-table-header">Date</th>
                 <th className="student-table-header">Status</th>
               </tr>

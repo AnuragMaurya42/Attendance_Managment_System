@@ -6,8 +6,8 @@ const Table = ({ index, record: { date, roll, name, id, status } }) => {
   return (
     <tr>
       <td>{index}</td>
-      <td>{roll}</td>
-      <td>{name}</td>
+      {/* <td>{roll}</td>
+      <td>{name}</td> */}
       <td>{date}</td>
       <td>{status}</td>
     </tr>

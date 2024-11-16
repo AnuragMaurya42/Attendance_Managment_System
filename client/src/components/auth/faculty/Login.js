@@ -78,7 +78,7 @@ const FacultyLogin = ({
                 value={name}
                 name="name"
                 onChange={(e) => onChange(e)}
-                autoComplete="off"
+                autoComplete="on"
               />
               <input
                 type="email"
@@ -86,7 +86,7 @@ const FacultyLogin = ({
                 value={email}
                 name="email"
                 onChange={(e) => onChange(e)}
-                autoComplete="off"
+                autoComplete="on"
               />
               <input
                 type="password"
@@ -102,7 +102,7 @@ const FacultyLogin = ({
                 value={dept}
                 name="dept"
                 onChange={(e) => onChange(e)}
-                autoComplete="off"
+                autoComplete="on"
               />
               <button type="submit">Sign Up</button>
             </form>
@@ -124,7 +124,7 @@ const FacultyLogin = ({
                 value={email}
                 name="email"
                 onChange={(e) => onChange(e)}
-                autoComplete="off"
+                autoComplete="on"
               />
               <input
                 type="password"
