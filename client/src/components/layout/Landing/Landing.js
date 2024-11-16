@@ -27,17 +27,17 @@ export const Landing = () => {
               <div className="collapse navbar-collapse" id="navbarResponsive">
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
-                    <a className="nav-link" href="#home" style={{ color: "#fafafa" }}>
+                    <a className="nav-link" href="#home" >
                       Home
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#features" style={{ color: "#fafafa" }}>
+                    <a className="nav-link" href="#features" >
                       Features
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#contact" style={{ color: "#fafafa" }}>
+                    <a className="nav-link" href="#contact" >
                       Contact
                     </a>
                   </li>
@@ -55,20 +55,20 @@ export const Landing = () => {
             </div>
             <div className="caption text-center" style={{ textAlign: "center" }}>
               <h1>
-                Welcome to iiitdm's <br />
-                web-based attendance management system
+                Welcome to NIT Srinagar's <br />
+                Web-Based Attendance Management System
               </h1>
               <Link
                 className="btn btn-lg get_started"
                 to="/login"
                 style={{
-                  color: "#fafafa",
-                  backgroundColor: "#099e2a",
+                  color: "#000000",
+                  backgroundColor: "#fafafa",
                   padding: "10px 20px",
                   transition: "0.3s"
                 }}
               >
-                Get Started
+                <b>Get Started</b>
               </Link>
             </div>
           </div>
