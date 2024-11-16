@@ -217,8 +217,8 @@ export const Landing = () => {
                   lineHeight: "1.8",       // Adjust this value to control the spacing between lines
                 }}
               >
-                Welcome to NIT Srinagar's <br />
-                App-Based Attendance Management System
+              <strong> Welcome to NIT Srinagar's <br />
+              App-Based Attendance Management System</strong>
               </p>
 
               <Link
