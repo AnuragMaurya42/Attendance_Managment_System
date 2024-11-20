@@ -42,9 +42,9 @@ const FacRoom = ({
         </div>
       </main>
       <footer className="footer">
-        <div className="footer__copyright">&copy; IIITDMJ</div>
+        <div className="footer__copyright">&copy; NIT Srinagar</div>
         <div className="footer__signature">
-          The Ultimate Attendance Management Tool
+          AttendX : Digital Attendance Recorder
         </div>
       </footer>
     </div>

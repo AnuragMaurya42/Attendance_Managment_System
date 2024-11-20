@@ -206,34 +206,54 @@ router.get("/students/:year", auth, async (req, res) => {
 // @route   POST api/faculty/attendance/:year/:roll/:course
 // @desc    Mark attendance for a student
 // @access  Private
-router.post("/attendance/:year/:roll/:course", auth, async (req, res) => {
-  const { date, status } = req.body;
+router.post("/attendance/:year/:course", auth, async (req, res) => {
+  const { attendance } = req.body; // Array of { roll, date, status }
+  const { year, course } = req.params;
+  // console.log(attendance,year,course);
+
+  if (!Array.isArray(attendance)) {
+    return res.status(400).json({ msg: "Attendance data must be an array" });
+  }
 
   try {
-    const student = await Student.findOne({ roll: req.params.roll });
-    const course = await Course.findOne({
+    const courseRecord = await Course.findOne({
       faculty: req.user.name,
-      year: req.params.year,
-      course: req.params.course,
+      year,
+      course,
     });
 
-    if (!student || !course) {
-      return res.status(400).json({ msg: "Invalid student or course" });
+    if (!courseRecord) {
+      return res.status(400).json({ msg: "Invalid course or faculty" });
     }
 
-    const attendance = await Attendance.create({
-      roll: req.params.roll,
-      course: req.params.course,
-      year: req.params.year,
-      name: student.name,
-      date,
-      status,
-    });
-    res.json(attendance);
+    const results = await Promise.all(
+      attendance.map(async ({ roll, date, status }) => {
+        const student = await Student.findOne({ roll });
+
+        if (!student) {
+          throw new Error(`Student with roll ${roll} not found`);
+        }
+
+        const newAttendance = await Attendance.create({
+          roll,
+          course,
+          year,
+          name: student.name,
+          date,
+          status,
+        });
+
+        return newAttendance;
+      })
+    );
+
+    res.json(results);
   } catch (err) {
+    console.error(err.message);
     res.status(500).send("Server error");
   }
 });
+
 
 // @route   GET api/faculty/attendance/:year/:roll/:course
 // @desc    Get attendance of a student

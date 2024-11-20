@@ -9,7 +9,7 @@ import { logout } from "../../../actions/auth";
 const CreatePage = ({ auth: { user }, logout }) => {
   return (
     <div className="grid-container">
-      <header className="header">
+      <header className="header" >
         <div className="header__logo">Attendance DashBoard</div>
         <div className="responsive-sidebar">
           <div className="inner-responsive-sidebar">

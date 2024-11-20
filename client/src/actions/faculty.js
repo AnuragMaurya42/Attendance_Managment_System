@@ -118,35 +118,36 @@ export const addPost = (formData) => async (dispatch) => {
 
 // Get attendance for a course
 export const markAttendance =
-  (year, roll, course, { date, status }) =>
-  async (dispatch) => {
+  (year, course, attendanceArray) => async (dispatch) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
-    const formData = JSON.stringify({ date, status });
 
     try {
+      // Send the entire attendance array in one request
+      // console.log(year,course,attendanceArray);
       const res = await axios.post(
-        `/api/faculty/attendance/${year}/${roll}/${course}`,
-        formData,
+        `/api/faculty/attendance/${year}/${course}`,
+        { attendance: attendanceArray },
         config
       );
-      console.log("FIRING");
+
       dispatch({
         type: MARK,
         payload: res.data,
       });
 
-      dispatch(setAlert("Attendance marked", "success"));
+      dispatch(setAlert("Attendance marked for all students", "success"));
     } catch (err) {
       dispatch({
         type: POST_ERROR,
-        payload: { msg: err.response, status: err.response },
+        payload: { msg: err.response?.data || "Server error", status: err.response?.status },
       });
     }
   };
+
 
 // Get attendance for a course
 export const updateAttendance =
