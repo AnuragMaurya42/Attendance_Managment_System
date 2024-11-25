@@ -6,7 +6,7 @@
   "scripts": {
        "start": "concurrently \"npm run server\" \"npm run client\"",
 
-     "server": "node server.js",
+     "server": "npm start",
      "client": "cd client && npm start",
     "test": "npx sequelize-cli db:create && npm run server"
   },
