@@ -1496,3 +1496,33 @@ h6 {
 .c100.orange.dark:hover > span {
   color: #e08833;
 }
+
+
+/* is ke baad maine css likhi hai */
+.android-grid-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.android-header {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.android-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #099e2a;
+  padding: 10px;
+}
+
+.android-main {
+  padding: 20px;
+}
+
+.android-footer {
+  padding: 10px;
+  text-align: center;
+}

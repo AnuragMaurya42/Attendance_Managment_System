@@ -62,7 +62,13 @@ const StudentHome = ({
         <div className="container_head">
           <div className="main-header">
             <div className="main-header__heading">
-              <h1 style={{ fontSize: "40px", fontWeight: "750px" }}>
+              <h1 style={{ fontSize: "40px", fontWeight: "750px",
+                display:"grid",
+                gridTemplateColumns:"1fr auto",
+                gap:"10px",
+                alignItems:"center",
+                
+               }}>
                 {user.name}{" "}
               </h1>
               <h4>
